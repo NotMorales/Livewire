@@ -5,7 +5,7 @@
 Clonar este repositorio:
 
 ```bash
-$ git clone https://github.com/m-elewa/vurtify.git
+$ git clone https://github.com/NotMorales/Livewire
 ```
 
 Luego instale la dependencia requerida.
