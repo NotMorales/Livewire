@@ -2,23 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\UsersTable;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/messages', [HomeController::class, 'store'])->name('messages');
+Route::get('/message/{id}', [HomeController::class, 'show'])->name('message.show');
+Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
+Route::patch('/notifications/{id}', [NotificationsController::class, 'read'])->name('notifications.read');
+Route::delete('/notifications/{id}', [NotificationsController::class, 'destroy'])->name('notifications.destroy');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 

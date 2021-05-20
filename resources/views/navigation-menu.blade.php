@@ -22,6 +22,16 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @if(!Auth::guest())
+                    <a href="{{ route('home') }}" class="font-medium text-gray-500 hover:text-gray-900">Enviar Mensaje</a>
+                    <a href="{{ route('notifications.index') }}" class="font-medium text-gray-500 hover:text-gray-900 ml-4">Notificaciones
+                        @if($count = Auth::user()->unreadNotifications->count())
+                            <span class="badge mb-3 bg-red-800 rounded-full px-2 py-1 text-center object-right-top text-white text-sm mr-1">
+                            {{ $count }}
+                        </span>
+                        @endif
+                    </a>
+                @endif
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
